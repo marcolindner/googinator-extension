@@ -21,15 +21,29 @@ let gogginsQuotes = [
     "Jede Sekunde, die du vergeudest, verliert jemand anders nicht. Sei der, der immer weitergeht.",
     "Du kannst der Schwächste im Raum sein, aber wenn du nie aufgibst, bist du der Stärkste im Geist.",
 ];
+let gogginsAudio = [
+    "audio/quote_0.mp3",
+    "audio/quote_1.mp3",
+    "audio/quote_2.mp3",
+    "audio/quote_3.mp3",
+    "audio/quote_4.mp3",
+    "audio/quote_5.mp3",
+    "audio/quote_6.mp3",
+    "audio/quote_7.mp3",
+    "audio/quote_8.mp3",
+    "audio/quote_9.mp3",
+];
 
-var quotesContainer = document.querySelector("#goggiquote");
+var quotesContainer = document.getElementById("goggins-quotes");
 var gimmeMore = document.querySelector("#gimmemore");
+var audioPlayer = document.getElementById("audioplayer");
 gimmeMore.addEventListener("click", getQuote);
 
 function getQuote() {
     let randomNumber = Math.floor(Math.random() * gogginsQuotes.length);
-    console.log("gogginsQuotes:", gogginsQuotes[randomNumber]);
     quotesContainer.innerHTML = gogginsQuotes[randomNumber];
+    audioPlayer.src = gogginsAudio[randomNumber];
+    audioPlayer.play();
 }
 
 getQuote();

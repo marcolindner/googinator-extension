@@ -3,14 +3,17 @@ body {
     height: 280px;
 }
 
-#goggiquote {
+.quote-wrapper {
     font-size: 24px;
     color: #000;
     text-align: center;
     margin-top: 20px;
     display: block;
-    height: 150px;
+    min-height: 150px;
     font-style: italic;
+    border: solid 3px #000;
+    border-radius: 10px;
+    padding: 6px;
 }
 
 #gimmemore {
@@ -21,4 +24,8 @@ body {
     display: block;
     height: 30px;
     margin: 0 auto;
+}
+
+#audioplayer {
+    display: none;
 }
