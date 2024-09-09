@@ -38,12 +38,13 @@ var quotesContainer = document.getElementById("goggins-quotes");
 var gimmeMore = document.querySelector("#gimmemore");
 var audioPlayer = document.getElementById("audioplayer");
 gimmeMore.addEventListener("click", getQuote);
+// audioPlayer.addEventListener("ended", getQuote);
 
 function getQuote() {
     let randomNumber = Math.floor(Math.random() * gogginsQuotes.length);
     quotesContainer.innerHTML = gogginsQuotes[randomNumber];
     audioPlayer.src = gogginsAudio[randomNumber];
-    audioPlayer.play();
+    //audioPlayer.play();
 }
 
 getQuote();
