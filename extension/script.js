@@ -36,15 +36,30 @@ let gogginsAudio = [
 
 var quotesContainer = document.getElementById("goggins-quotes");
 var gimmeMore = document.querySelector("#gimmemore");
-var audioPlayer = document.getElementById("audioplayer");
+// var audioPlayer = document.getElementById("audio-player");
 gimmeMore.addEventListener("click", getQuote);
 // audioPlayer.addEventListener("ended", getQuote);
+
+async function playSound(source = 'audio/quote_0.mp3', volume = 1) {
+    console.log('playSound', source, volume);
+    await createOffscreen();
+    await chrome.runtime.sendMessage({ play: { source, volume } });
+}
+
+// Create the offscreen document if it doesn't already exist
+async function createOffscreen() {
+    if (await chrome.offscreen.hasDocument()) return;
+    await chrome.offscreen.createDocument({
+        url: 'offscreen.html',
+        reasons: ['AUDIO_PLAYBACK'],
+        justification: 'testing' // details for using the API
+    });
+}
 
 function getQuote() {
     let randomNumber = Math.floor(Math.random() * gogginsQuotes.length);
     quotesContainer.innerHTML = gogginsQuotes[randomNumber];
-    audioPlayer.src = gogginsAudio[randomNumber];
-    //audioPlayer.play();
+    playSound(gogginsAudio[randomNumber]);
 }
 
 getQuote();
